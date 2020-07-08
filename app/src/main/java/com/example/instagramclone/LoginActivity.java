@@ -28,21 +28,30 @@ public class LoginActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.btnStartSignUp.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                goSignUpActivity();
-            }
-        });
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if (currentUser != null) {
+            goMainActivity();
+        } else {
+            // show the signup or login screen
+            binding.btnStartSignUp.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    goSignUpActivity();
+                }
+            });
 
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String username = binding.etUsername.getText().toString();
-                String password = binding.etPassword.getText().toString();
-                loginUser(username, password);
-            }
-        });
+            binding.btnLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String username = binding.etUsername.getText().toString();
+                    String password = binding.etPassword.getText().toString();
+                    loginUser(username, password);
+                }
+            });
+        }
+
+
+
     }
 
     private void goSignUpActivity() {
