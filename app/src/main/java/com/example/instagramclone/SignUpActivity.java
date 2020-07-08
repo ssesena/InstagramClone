@@ -34,7 +34,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view){
                 String username = binding.etUsername.getText().toString();
                 String password = binding.etPassword.getText().toString();
-                if(username.length() != 0 || password.length() != 0) {
+                if(username.length() != 0 && password.length() != 0) {
                     signUpUser(username, password);
                 } else {
                     Toast.makeText(SignUpActivity.this, "Username and Password cannot be empty", Toast.LENGTH_SHORT).show();
