@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="100dp"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <EditText
+    android:id="@+id/etUsername"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:ems="10"
+    android:hint="Username"/>
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Login"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/vEmptySpace" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvSignUp"
+        android:layout_weight="1"
+        android:text="Don't have an account? Sign up Here!"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnStartSignUp"
+        android:layout_weight="1"
+        android:text="Go to Sign up!"/>
+
+</LinearLayout>
