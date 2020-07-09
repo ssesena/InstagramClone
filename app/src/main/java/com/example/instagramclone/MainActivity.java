@@ -12,11 +12,10 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.instagramclone.databinding.ActivityLoginBinding;
 import com.example.instagramclone.databinding.ActivityMainBinding;
+import com.example.instagramclone.models.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -43,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
 
 
+        queryPosts();
         
         binding.btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 for (Post post:posts){
-                    Log.i(TAG, "Post: " + post.getDescription());
+                    Log.i(TAG, "Post: " + post.toString());
                 }
 
             }

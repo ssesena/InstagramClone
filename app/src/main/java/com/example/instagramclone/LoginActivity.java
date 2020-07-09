@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-            goMainActivity();
+            goFeedActivity();
         } else {
             // show the signup or login screen
             binding.btnStartSignUp.setOnClickListener(new View.OnClickListener(){
@@ -54,6 +54,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    private void goFeedActivity() {
+        Intent intent = new Intent(this, FeedActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void goSignUpActivity() {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
@@ -68,16 +74,12 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e(TAG,"Issue with login" + e.toString());
                     return;
                 }
-                goMainActivity();
+                goFeedActivity();
                 Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_LONG).show();
             }
 
         });
     }
 
-    private void goMainActivity() {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-        finish();
-    }
+
 }
