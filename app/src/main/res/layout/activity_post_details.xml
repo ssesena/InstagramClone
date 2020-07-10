@@ -8,13 +8,15 @@
         android:id="@+id/tvDetailsUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-black"
         android:hint="Username"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"/>
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textStyle="bold" />
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="500dp"
+        android:layout_height="400dp"
         android:id="@+id/ivDetailsPost"
         tools:srcCompat="@tools:sample/avatars"
         android:layout_below="@+id/tvDetailsUsername"
@@ -26,8 +28,18 @@
         android:id="@+id/tvDetailsCaption"
         android:hint="Caption"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/ivDetailsPost"
-        android:layout_marginBottom="10dp"/>
+        android:layout_below="@+id/ivDetailsPost" />
+
+    <TextView
+        android:id="@+id/tvDetailsTimestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDetailsCaption"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="Timestamp"
+        android:textSize="10sp" />
 
 
 

@@ -80,6 +80,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder>{
             }
             binding.tvUsername.setText(post.getUser().fetchIfNeeded().getString("username"));
             binding.tvCaption.setText(post.getDescription());
+            binding.tvTimestamp.setText(post.getTimeStamp());
         }
 
         public void clearImage() {

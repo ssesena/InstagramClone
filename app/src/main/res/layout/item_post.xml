@@ -26,8 +26,18 @@
         android:id="@+id/tvCaption"
         android:hint="Caption"
         android:layout_marginTop="10dp"
-        android:layout_below="@+id/ivPost"
-        android:layout_marginBottom="10dp"/>
+        android:layout_below="@+id/ivPost" />
+
+    <TextView
+        android:id="@+id/tvTimestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvCaption"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="sans-serif-light"
+        android:hint="Timestamp"
+        android:textSize="10sp" />
 
 
 

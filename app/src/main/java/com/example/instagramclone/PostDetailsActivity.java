@@ -36,7 +36,6 @@ public class PostDetailsActivity extends AppCompatActivity {
         ParseFile postImage = post.getImage();
         if (postImage != null) {
             Glide.with(this).load(postImage.getUrl()).into(binding.ivDetailsPost);
-            // Glide.with(context).load("https://sams-parstagram.herokuapp.com/parse/files/sams-parstagram/d0a971de02e5851ab0d39de895e18248_photo.jpg").into(binding.ivPost);
             Log.i(TAG, postImage.getUrl());
 
         }
@@ -46,5 +45,9 @@ public class PostDetailsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         binding.tvDetailsCaption.setText(post.getDescription());
+        if (post.getTimeStamp() != null) {
+            Log.i(TAG, post.getTimeStamp().toString());
+        }
+       binding.tvDetailsTimestamp.setText(post.getTimeStamp());
     }
 }

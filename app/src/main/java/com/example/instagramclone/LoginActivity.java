@@ -63,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
     private void goSignUpActivity() {
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
-        finish();
     }
 
     private void loginUser(String username, String password) {
