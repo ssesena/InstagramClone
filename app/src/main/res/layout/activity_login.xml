@@ -5,17 +5,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="100dp"
-    android:layout_margin="16dp"
     android:orientation="vertical"
+    android:paddingTop="100dp"
     tools:context=".LoginActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ivLogo"
+        android:src="@mipmap/instagram_logo_svg"
+        android:layout_marginHorizontal="100dp"/>
+
+
     <EditText
-    android:id="@+id/etUsername"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:hint="Username"/>
+        android:id="@+id/etUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Username"
+        android:layout_marginHorizontal="40dp"/>
 
     <EditText
         android:id="@+id/etPassword"
@@ -23,32 +31,39 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Password"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="40dp"/>
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login"/>
+        android:text="Log In"
+        android:textAllCaps="false"
+        android:background="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="40dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="50dp">
+        android:paddingTop="50dp"
+        android:layout_marginHorizontal="40dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/tvSignUp"
-            android:layout_centerHorizontal="true"
-            android:text="Don't have an account? Sign up Here!"/>
+            android:text="Don't have an account? "/>
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnStartSignUp"
-            android:layout_below="@+id/tvSignUp"
-            android:layout_centerHorizontal="true"
-            android:text="Go to Sign up!"/>
+            android:id="@+id/tvStartSignUp"
+            android:layout_toRightOf="@+id/tvSignUp"
+            android:text="Sign up."
+            android:textColor="@android:color/holo_blue_dark"/>
     </RelativeLayout>
 
 </LinearLayout>

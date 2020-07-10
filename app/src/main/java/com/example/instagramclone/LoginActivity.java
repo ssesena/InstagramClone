@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
             goFeedActivity();
         } else {
             // show the signup or login screen
-            binding.btnStartSignUp.setOnClickListener(new View.OnClickListener(){
+            binding.tvStartSignUp.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View view){
                     goSignUpActivity();
@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                     loginUser(username, password);
                 }
             });
+
         }
 
 

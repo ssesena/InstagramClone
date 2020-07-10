@@ -7,27 +7,41 @@
     android:layout_height="match_parent"
     tools:context=".FeedActivity">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="680dp"
-        android:id="@+id/swipeContainer">
-        <androidx.recyclerview.widget.RecyclerView
+        android:layout_height="500dp"
+        android:id="@+id/rlPosts">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="680dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:id="@+id/rvPosts"/>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:id="@+id/swipeContainer">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart ="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:id="@+id/rvPosts"/>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btnAddImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/swipeContainer"
+        android:layout_below="@+id/rlPosts"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="0dp"
         android:text="Add Photo" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogout"
+        android:layout_below="@+id/btnAddImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="0dp"
+        android:text="Logout"/>
 
 </RelativeLayout>

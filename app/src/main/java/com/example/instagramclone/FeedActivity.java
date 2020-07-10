@@ -16,6 +16,7 @@ import com.example.instagramclone.models.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import org.json.JSONArray;
 
@@ -49,6 +50,15 @@ public class FeedActivity extends AppCompatActivity {
         binding.rvPosts.setAdapter(feedAdapter);
         binding.rvPosts.setLayoutManager(new LinearLayoutManager(this));
         queryPosts(feedAdapter, refresh);
+
+        binding.btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ParseUser.logOut();
+                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+                goLoginActivity();
+            }
+        });
 
         binding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -100,5 +110,10 @@ public class FeedActivity extends AppCompatActivity {
     private void goMainActivity() {
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
+    }
+    private void goLoginActivity() {
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

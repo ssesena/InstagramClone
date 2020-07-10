@@ -51,14 +51,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.btnLogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ParseUser.logOut();
-                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
-                goLoginActivity();
-            }
-        });
 
         binding.btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,11 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void goLoginActivity() {
-        Intent intent = new Intent(this,LoginActivity.class);
-        startActivity(intent);
-        finish();
-    }
+
 
     private void launchCamera() {
         // create Intent to take a picture and return control to the calling application

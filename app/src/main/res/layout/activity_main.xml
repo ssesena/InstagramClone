@@ -31,16 +31,5 @@
         android:id="@+id/btnSubmit"
         android:text="Submit"/>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="100dp">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btnLogout"
-            android:layout_centerHorizontal="true"
-            android:text="Logout"/>
-    </RelativeLayout>
 
 </LinearLayout>
