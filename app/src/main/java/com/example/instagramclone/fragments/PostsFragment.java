@@ -1,47 +1,77 @@
-package com.example.instagramclone;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+package com.example.instagramclone.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.example.instagramclone.LoginActivity;
+import com.example.instagramclone.R;
 import com.example.instagramclone.adapters.FeedAdapter;
-import com.example.instagramclone.databinding.ActivityFeedBinding;
-import com.example.instagramclone.databinding.ActivityMainBinding;
+import com.example.instagramclone.databinding.FragmentComposeBinding;
+import com.example.instagramclone.databinding.FragmentPostsBinding;
 import com.example.instagramclone.models.Post;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class FeedActivity extends AppCompatActivity {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the  factory method to
+ * create an instance of this fragment.
+ */
+public class PostsFragment extends Fragment {
 
-    private ActivityFeedBinding binding;
-    public static final String TAG = "FeedActivity";
+    private FragmentPostsBinding binding;
+    public static final String TAG = "PostsFragment";
 
     Boolean refresh = false;
 
-    List<Post> allPosts = new ArrayList<>();
+    protected List<Post> allPosts = new ArrayList<>();
+
+    protected FeedAdapter feedAdapter;
+
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public PostsFragment() {
+        // Required empty public constructor
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityFeedBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
 
-        final FeedAdapter feedAdapter = new FeedAdapter(this, allPosts);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        binding = FragmentPostsBinding.inflate(getLayoutInflater());
+        feedAdapter = new FeedAdapter(getContext(), allPosts);
         binding.rvPosts.setAdapter(feedAdapter);
-        binding.rvPosts.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
         queryPosts(feedAdapter, refresh);
 
         binding.btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -66,11 +96,10 @@ public class FeedActivity extends AppCompatActivity {
         });
         // Configure the refreshing colors
         binding.swipeContainer.setColorSchemeResources(android.R.color.darker_gray);
-
+        return binding.getRoot();
     }
 
-
-    private void queryPosts(final FeedAdapter feedAdapter, final Boolean refreshFeed){
+    protected void queryPosts(final FeedAdapter feedAdapter, final Boolean refreshFeed) {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         // include data referred by user key
         query.include(Post.KEY_USER);
@@ -81,14 +110,14 @@ public class FeedActivity extends AppCompatActivity {
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
-                if(e!=null){
+                if (e != null) {
                     Log.e(TAG, "Issue with getting posts");
                     return;
                 }
-                for (Post post:posts){
+                for (Post post : posts) {
                     Log.i(TAG, "Post: " + post.toString());
                 }
-                if(refreshFeed){
+                if (refreshFeed) {
                     allPosts.clear();
 
                 }
@@ -96,17 +125,12 @@ public class FeedActivity extends AppCompatActivity {
                 feedAdapter.notifyDataSetChanged();
                 refresh = true;
                 binding.swipeContainer.setRefreshing(false);
-
             }
         });
     }
-    private void goMainActivity() {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-    }
     private void goLoginActivity() {
-        Intent intent = new Intent(this,LoginActivity.class);
+        Intent intent = new Intent(getContext(), LoginActivity.class);
         startActivity(intent);
-        finish();
     }
+
 }

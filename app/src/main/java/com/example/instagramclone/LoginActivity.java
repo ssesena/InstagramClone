@@ -1,11 +1,13 @@
 package com.example.instagramclone;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,13 +26,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
 
         ParseUser currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-            goFeedActivity();
+            goMainActivity();
         } else {
             // show the signup or login screen
             binding.tvStartSignUp.setOnClickListener(new View.OnClickListener(){
@@ -55,8 +59,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void goFeedActivity() {
-        Intent intent = new Intent(this, FeedActivity.class);
+    private void goMainActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
     }
@@ -74,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e(TAG,"Issue with login" + e.toString());
                     return;
                 }
-                goFeedActivity();
+                goMainActivity();
                 Toast.makeText(LoginActivity.this, "Success!", Toast.LENGTH_LONG).show();
             }
 

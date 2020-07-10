@@ -40,7 +40,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder>{
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View postView = LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
+        ItemPostBinding postView = ItemPostBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);//LayoutInflater.from(context).inflate(R.layout.item_post, parent, false);
         return new ViewHolder(postView);
     }
 
@@ -62,11 +62,12 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ItemPostBinding binding = ItemPostBinding.bind(itemView);
+        private ItemPostBinding binding;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
+        public ViewHolder(@NonNull ItemPostBinding itemView) {
+            super(itemView.getRoot());
+            binding = itemView;
+            //itemView.setOnClickListener(this);
 
         }
 
