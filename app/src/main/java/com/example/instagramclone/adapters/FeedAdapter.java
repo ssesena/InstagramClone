@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.example.instagramclone.FeedActivity;
 import com.example.instagramclone.PostDetailsActivity;
 import com.example.instagramclone.R;
+import com.example.instagramclone.RecyclerViewClickListener;
 import com.example.instagramclone.databinding.ActivityMainBinding;
 import com.example.instagramclone.databinding.ItemPostBinding;
 import com.example.instagramclone.models.Post;
@@ -31,6 +32,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder>{
 
     Context context;
     List<Post> posts;
+    public static RecyclerViewClickListener recyclerViewClickListener;
 
     public FeedAdapter(Context context, List<Post> posts) {
         this.context = context;
@@ -45,7 +47,19 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "Clicked");
+                if (position != RecyclerView.NO_POSITION){
+                    Post post = posts.get(position);
+                    Intent intent = new Intent(context, PostDetailsActivity.class);
+                    intent.putExtra(Post.class.getSimpleName(), Parcels.wrap(post));
+                    context.startActivity(intent);
+                }
+            }
+        });
         Post post = posts.get(position);
         try {
             holder.clearImage();
@@ -90,7 +104,9 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.ViewHolder>{
 
         @Override
         public void onClick(View view) {
+ //           recyclerViewClickListener.recyclerViewListClicked(view, getAdapterPosition());
             int position = getAdapterPosition();
+            Log.i(TAG, "Clicked");
             if (position != RecyclerView.NO_POSITION){
                 Post post = posts.get(position);
                 Intent intent = new Intent(context, PostDetailsActivity.class);

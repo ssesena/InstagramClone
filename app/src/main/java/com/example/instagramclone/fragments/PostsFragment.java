@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
@@ -13,7 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.instagramclone.LoginActivity;
+import com.example.instagramclone.PostDetailsActivity;
 import com.example.instagramclone.R;
+import com.example.instagramclone.RecyclerViewClickListener;
 import com.example.instagramclone.adapters.FeedAdapter;
 import com.example.instagramclone.databinding.FragmentComposeBinding;
 import com.example.instagramclone.databinding.FragmentPostsBinding;
@@ -23,6 +26,8 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +36,7 @@ import java.util.List;
  * Use the  factory method to
  * create an instance of this fragment.
  */
-public class PostsFragment extends Fragment {
+public class PostsFragment extends Fragment implements RecyclerViewClickListener {
 
     private FragmentPostsBinding binding;
     public static final String TAG = "PostsFragment";
@@ -55,6 +60,7 @@ public class PostsFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +69,6 @@ public class PostsFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -96,8 +101,10 @@ public class PostsFragment extends Fragment {
         });
         // Configure the refreshing colors
         binding.swipeContainer.setColorSchemeResources(android.R.color.darker_gray);
+
         return binding.getRoot();
     }
+
 
     protected void queryPosts(final FeedAdapter feedAdapter, final Boolean refreshFeed) {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
@@ -133,4 +140,14 @@ public class PostsFragment extends Fragment {
         startActivity(intent);
     }
 
+    @Override
+    public void recyclerViewListClicked(View v, int position) {
+        Log.i(TAG, "Clicked");
+        if (position != RecyclerView.NO_POSITION){
+            Post post = allPosts.get(position);
+            Intent intent = new Intent(getContext(), PostDetailsActivity.class);
+            intent.putExtra(Post.class.getSimpleName(), Parcels.wrap(post));
+            startActivity(intent);
+        }
+    }
 }
